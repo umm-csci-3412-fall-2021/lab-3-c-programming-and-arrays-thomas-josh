@@ -20,10 +20,11 @@ void mergeRanges(int* values, int startIndex, int midPoint, int endIndex) {
      * then merge them into a single sorted array, copy that back, and return.
      */
     int rangeSize = endIndex - startIndex;
-    int* destination = (int*)calloc(rangeSize, sizeof(char));
+    int* destination = (int*)calloc(rangeSize, sizeof(int));
     int firstIndex = startIndex;
     int secondIndex = midPoint;
     int copyIndex = 0;
+    int i;
     while (firstIndex < midPoint && secondIndex < endIndex) {
       if (values[firstIndex] < values[secondIndex]) {
         destination[copyIndex] = values[firstIndex];
@@ -44,9 +45,13 @@ void mergeRanges(int* values, int startIndex, int midPoint, int endIndex) {
       ++copyIndex;
       ++secondIndex;
     }
-    for (int i = 0; i < rangeSize; ++i) {
+    for (i = 0; i < rangeSize; ++i) {
       values[i + startIndex] = destination[i];
     }
+    if(rangeSize != 0){
+        free(destination);
+    }
+
   }
 
 void mergesortRange(int* values, int startIndex, int endIndex) {
