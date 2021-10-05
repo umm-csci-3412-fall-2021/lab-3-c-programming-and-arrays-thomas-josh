@@ -67,7 +67,7 @@ TEST(ArrayMerge, Handle_multiple_copies_of_longer_list_different_orders) {
   int* result;
 
   result = array_merge(num_arrays, sizes, a);
-  arrays_match(8, result, expected);
+  arrays_match(11, result, expected);
 }
 
 TEST(ArrayMerge, Handle_different_sizes) {
