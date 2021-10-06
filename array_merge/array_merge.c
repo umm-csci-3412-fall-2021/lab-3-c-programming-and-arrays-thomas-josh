@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*Sees if a number is already in the array*/
 int inArray(int* array, int number, int size){
     int result = 0;
     for(int i = 0; i < size; i++){
@@ -16,6 +17,7 @@ int inArray(int* array, int number, int size){
     return result;
 }
 
+/*Puts all the elements of an array of arrays into a single specified array */
 void intoOneArray(int* bigArray, int** values, int num_arrays, int* sizes){
   int r = 0;
   for(int j = 0; j< num_arrays; j++){
@@ -36,6 +38,7 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
   int i;
   int counter = 0;
 
+/*Counts the total number of elements in the array of arrays */
   for(i = 0; i < num_arrays; i++){
     counter = counter + sizes[i];
   }
@@ -45,6 +48,7 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
 
   intoOneArray(bigArray, values, num_arrays, sizes);
 
+/*Adds all non duplicate elements from one array into another */
   for(int h = 0; h < counter; h++){
       if(inArray(littleArray, bigArray[h], counter2) == 0){
           littleArray[counter2] = bigArray[h];
@@ -57,6 +61,7 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
   finalArray = (int*)calloc(counter2+1, sizeof(int));
   finalArray[0] = counter2;
 
+/*Puts the now sorted elements into the final array */
   for(int x = 1; x < counter2+1; x++){
       finalArray[x] = littleArray[x-1];
   }
